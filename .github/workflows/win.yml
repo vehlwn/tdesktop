@@ -72,7 +72,7 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
 
-      - uses: ilammy/msvc-dev-cmd@v1.9.0
+      - uses: ilammy/msvc-dev-cmd@v1.10.0
         name: x86 Native Tools Command Prompt.
         with:
           arch: win32
@@ -250,6 +250,12 @@ jobs:
           cd ..\..\..
           ninja -C out/Release dump_syms
 
+      - name: Local cache.
+        id: cache-local
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.LibrariesPath }}/local
+          key: ${{ runner.OS }}-local-${{ env.CACHE_KEY }}
       - name: Opus cache.
         id: cache-opus
         uses: actions/cache@v2
@@ -457,7 +463,7 @@ jobs:
 
           call vcvars32.bat
           cd ..\out
-          msbuild -m Telegram.sln /nologo /p:Configuration=Debug,Platform=Win32
+          msbuild -m Telegram.sln /nologo /p:Configuration=Debug,Platform=Win32,DebugType=None,DebugSymbols=false
 
       - name: Move artifact.
         if: env.UPLOAD_ARTIFACT == 'true'
