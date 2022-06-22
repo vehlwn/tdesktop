@@ -210,11 +210,6 @@ void SponsoredMessages::inject(
 }
 
 bool SponsoredMessages::canHaveFor(not_null<History*> history) const {
-	if (history->peer->isChannel()) {
-		return true;
-	} else if (const auto user = history->peer->asUser()) {
-		return user->isBot();
-	}
 	return false;
 }
 
