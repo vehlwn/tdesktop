@@ -2596,16 +2596,7 @@ void HistoryItem::translationDone(LanguageId to, TextWithEntities result) {
 }
 
 bool HistoryItem::canReact() const {
-	if (!isRegular()) {
-		return false;
-	} else if (isService()) {
-		return (_flags & MessageFlag::ReactionsAllowed);
-	} else if (const auto media = this->media()) {
-		if (media->call()) {
-			return (_flags & MessageFlag::ReactionsAllowed);
-		}
-	}
-	return true;
+    return false;
 }
 
 void HistoryItem::addPaidReaction(
@@ -3982,6 +3973,7 @@ void HistoryItem::createComponentsHelper(HistoryItemCommonFields &&fields) {
 }
 
 void HistoryItem::setReactions(const MTPMessageReactions *reactions) {
+    return;
 	Expects(!_reactions);
 
 	if (changeReactions(reactions) && _reactions->hasUnread()) {
@@ -3990,6 +3982,7 @@ void HistoryItem::setReactions(const MTPMessageReactions *reactions) {
 }
 
 void HistoryItem::updateReactions(const MTPMessageReactions *reactions) {
+    return;
 	const auto wasRecentUsers = LookupRecentUnreadReactedUsers(this);
 	const auto hadUnread = hasUnreadReaction();
 	const auto changed = changeReactions(reactions);
