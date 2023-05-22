@@ -1175,8 +1175,7 @@ base::unique_qptr<Ui::PopupMenu> FillContextMenu(
 		: nullptr;
 	const auto hasSelection = !request.selectedItems.empty()
 		|| !request.selectedText.empty();
-	const auto hasWhoReactedItem = item
-		&& Api::WhoReactedExists(item, Api::WhoReactedList::All);
+	const auto hasWhoReactedItem = false;
 
 	auto result = base::make_unique_q<Ui::PopupMenu>(
 		list,

@@ -2188,8 +2188,7 @@ void HistoryInner::showContextMenu(QContextMenuEvent *e, bool showFromTouch) {
 		return item;
 	};
 	const auto leaderOrSelf = groupLeaderOrSelf(_dragStateItem);
-	const auto hasWhoReactedItem = leaderOrSelf
-		&& Api::WhoReactedExists(leaderOrSelf, Api::WhoReactedList::All);
+	const auto hasWhoReactedItem = false;
 	using namespace HistoryView::Reactions;
 	const auto clickedReaction = ReactionIdOfLink(link);
 	const auto linkPhoneNumber = link
