@@ -2158,7 +2158,7 @@ void ApiWrap::saveDraftsToCloud() {
 
 		auto flags = MTPmessages_SaveDraft::Flags(0);
 		auto &textWithTags = cloudDraft->textWithTags;
-		if (cloudDraft->webpage.removed) {
+		if (true) {
 			flags |= MTPmessages_SaveDraft::Flag::f_no_webpage;
 		} else if (!cloudDraft->webpage.url.isEmpty()) {
 			flags |= MTPmessages_SaveDraft::Flag::f_media;
@@ -3809,8 +3809,7 @@ void ApiWrap::sendMessage(MessageToSend &&message) {
 			sendFlags |= MTPmessages_SendMessage::Flag::f_reply_to;
 			mediaFlags |= MTPmessages_SendMedia::Flag::f_reply_to;
 		}
-		const auto ignoreWebPage = message.webPage.removed
-			|| (exactWebPage && !isLast);
+		const auto ignoreWebPage = true;
 		const auto manualWebPage = exactWebPage
 			&& !ignoreWebPage
 			&& (message.webPage.manual || (isLast && !isFirst));
