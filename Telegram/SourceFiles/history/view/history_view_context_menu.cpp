@@ -1344,8 +1344,7 @@ void FillContextMenuItems(
 		: nullptr;
 	const auto hasSelection = !request.selectedItems.empty()
 		|| !request.selectedText.empty();
-	const auto hasWhoReactedItem = item
-		&& Api::WhoReactedExists(item, Api::WhoReactedList::All);
+	const auto hasWhoReactedItem = false;
 
 	AddReplyToMessageAction(result, request, list);
 	if (item) {
