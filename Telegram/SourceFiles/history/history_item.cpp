@@ -319,34 +319,8 @@ std::unique_ptr<Data::Media> HistoryItem::CreateMedia(
 		}, [](const MTPDdocumentEmpty &) -> Result {
 			return nullptr;
 		});
-	}, [&](const MTPDmessageMediaWebPage &media) {
-		using Flag = MediaWebPageFlag;
-		const auto flags = Flag()
-			| (media.is_force_large_media()
-				? Flag::ForceLargeMedia
-				: Flag())
-			| (media.is_force_small_media()
-				? Flag::ForceSmallMedia
-				: Flag())
-			| (media.is_manual() ? Flag::Manual : Flag())
-			| (media.is_safe() ? Flag::Safe : Flag());
-		return media.vwebpage().match([](const MTPDwebPageEmpty &) -> Result {
-			return nullptr;
-		}, [&](const MTPDwebPagePending &webpage) -> Result {
-			return std::make_unique<Data::MediaWebPage>(
-				item,
-				item->history()->owner().processWebpage(webpage),
-				flags);
-		}, [&](const MTPDwebPage &webpage) -> Result {
-			return std::make_unique<Data::MediaWebPage>(
-				item,
-				item->history()->owner().processWebpage(webpage),
-				flags);
-		}, [](const MTPDwebPageNotModified &) -> Result {
-			LOG(("API Error: "
-				"webPageNotModified is unexpected in message media."));
-			return nullptr;
-		});
+	}, [&](const MTPDmessageMediaWebPage &media) -> Result {
+		return nullptr;
 	}, [&](const MTPDmessageMediaGame &media) -> Result {
 		return media.vgame().match([&](const MTPDgame &game) {
 			return std::make_unique<Data::MediaGame>(
