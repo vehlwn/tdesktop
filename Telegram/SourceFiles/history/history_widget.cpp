@@ -7377,7 +7377,7 @@ void HistoryWidget::checkPinnedBarState() {
 		}
 		return;
 	}
-	if (_pinnedBar || !universalPinnedId) {
+	if (true) {
 		return;
 	}
 

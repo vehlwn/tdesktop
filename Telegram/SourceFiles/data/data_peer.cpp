@@ -1341,7 +1341,7 @@ Data::RestrictionCheckResult PeerData::amRestricted(
 				: Result::Allowed())
 			: (right == ChatRestriction::PinMessages)
 			? ((user->flags() & UserDataFlag::CanPinMessages)
-				? Result::Allowed()
+				? Result::Explicit()
 				: Result::Explicit())
 			: Result::Allowed();
 	} else if (const auto channel = asChannel()) {
