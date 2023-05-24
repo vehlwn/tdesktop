@@ -1173,31 +1173,12 @@ void TopBarWidget::updateControlsVisibility() {
 		&& !isOneColumn
 		&& _controller->canShowThirdSection()
 		&& !_chooseForReportReason);
-	const auto callsEnabled = [&] {
-		if (const auto peer = _activeChat.key.peer()) {
-			if (const auto user = peer->asUser()) {
-				return !user->isSelf()
-					&& !user->isBot()
-					&& !user->isInaccessible()
-					&& !peer->isServiceUser();
-			}
-		}
-		return false;
-	}();
+
+	const auto callsEnabled = false;
 	_call->setVisible(historyMode
 		&& callsEnabled
 		&& !_chooseForReportReason);
-	const auto groupCallsEnabled = [&] {
-		if (const auto peer = _activeChat.key.peer()) {
-			if (peer->canManageGroupCall()) {
-				return true;
-			} else if (const auto call = peer->groupCall()) {
-				return (call->fullCount() == 0);
-			}
-			return false;
-		}
-		return false;
-	}();
+	const auto groupCallsEnabled = false;
 	_groupCall->setVisible(historyMode
 		&& groupCallsEnabled
 		&& !_chooseForReportReason);
