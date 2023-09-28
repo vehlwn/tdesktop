@@ -354,12 +354,7 @@ Widget::Widget(
 	object_ptr<Ui::IconButton>(this, st::dialogsLock))
 , _scroll(this)
 , _scrollToTop(_scroll, st::dialogsToUp)
-, _stories((_layout != Layout::Child)
-	? std::make_unique<Stories::List>(
-		this,
-		st::dialogsStoriesList,
-		_storiesContents.events() | rpl::flatten_latest())
-	: nullptr)
+, _stories(nullptr)
 , _searchTimer([=] { search(); })
 , _singleMessageSearch(&controller->session()) {
 	const auto makeChildListShown = [](PeerId peerId, float64 shown) {

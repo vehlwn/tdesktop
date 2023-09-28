@@ -1519,11 +1519,6 @@ const Data::WallPaper *PeerData::wallPaper() const {
 }
 
 bool PeerData::hasActiveStories() const {
-	if (const auto user = asUser()) {
-		return user->hasActiveStories();
-	} else if (const auto channel = asChannel()) {
-		return channel->hasActiveStories();
-	}
 	return false;
 }
 

@@ -419,7 +419,7 @@ void Row::PaintCornerBadgeFrame(
 	q.translate(framePadding, framePadding);
 	auto hq = std::optional<PainterHighQualityEnabler>();
 	const auto photoSize = context.st->photoSize;
-	const auto storiesCount = data->storiesCount;
+	const auto storiesCount = 0;
 	if (storiesCount) {
 		hq.emplace(q);
 		const auto line = st::dialogsStoriesFull.lineTwice / 2.;
