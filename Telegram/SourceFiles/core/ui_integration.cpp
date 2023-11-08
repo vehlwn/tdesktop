@@ -379,10 +379,6 @@ std::shared_ptr<ClickHandler> UiIntegration::createLinkHandler(
 		}
 	} break;
 
-	case EntityType::Code:
-		return std::make_shared<MonospaceClickHandler>(data.text, data.type);
-	case EntityType::Pre:
-		return std::make_shared<MonospaceClickHandler>(data.text, data.type);
 	case EntityType::Phone:
 		return (my && my->session)
 			? std::make_shared<PhoneClickHandler>(my->session, data.text)
