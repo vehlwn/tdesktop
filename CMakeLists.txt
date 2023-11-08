@@ -35,6 +35,10 @@ project(Telegram
 )
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Telegram)
 
+set(CMAKE_C_COMPILER_LAUNCHER "/usr/bin/sccache")
+set(CMAKE_CXX_COMPILER_LAUNCHER "/usr/bin/sccache")
+set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=mold")
+
 get_filename_component(third_party_loc "Telegram/ThirdParty" REALPATH)
 get_filename_component(submodules_loc "Telegram" REALPATH)
 get_filename_component(cmake_helpers_loc "cmake" REALPATH)
