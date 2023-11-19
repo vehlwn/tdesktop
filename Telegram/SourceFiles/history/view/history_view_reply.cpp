@@ -626,9 +626,7 @@ void Reply::paint(
 	const auto &quoteSt = _hasQuoteIcon
 		? st::messageTextStyle.blockquote
 		: st::messageQuoteStyle;
-	const auto backgroundEmoji = backgroundEmojiId
-		? st->backgroundEmojiData(backgroundEmojiId).get()
-		: nullptr;
+	const auto backgroundEmoji = (Ui::BackgroundEmojiData*)nullptr;
 	const auto backgroundEmojiCache = backgroundEmoji
 		? &backgroundEmoji->caches[Ui::BackgroundEmojiData::CacheIndex(
 			selected,
