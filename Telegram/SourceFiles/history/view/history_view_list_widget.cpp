@@ -1581,35 +1581,19 @@ bool ListWidget::isEmpty() const {
 }
 
 bool ListWidget::hasCopyRestriction(HistoryItem *item) const {
-	return _delegate->listCopyRestrictionType(item)
-		!= CopyRestrictionType::None;
+	return false;
 }
 
 bool ListWidget::hasCopyMediaRestriction(not_null<HistoryItem*> item) const {
-	return _delegate->listCopyMediaRestrictionType(item)
-		!= CopyRestrictionType::None;
+	return false;
 }
 
 bool ListWidget::showCopyRestriction(HistoryItem *item) {
-	const auto type = _delegate->listCopyRestrictionType(item);
-	if (type == CopyRestrictionType::None) {
-		return false;
-	}
-	_delegate->listUiShow()->showToast((type == CopyRestrictionType::Channel)
-		? tr::lng_error_nocopy_channel(tr::now)
-		: tr::lng_error_nocopy_group(tr::now));
-	return true;
+    return false;
 }
 
 bool ListWidget::showCopyMediaRestriction(not_null<HistoryItem*> item) {
-	const auto type = _delegate->listCopyMediaRestrictionType(item);
-	if (type == CopyRestrictionType::None) {
-		return false;
-	}
-	_delegate->listUiShow()->showToast((type == CopyRestrictionType::Channel)
-		? tr::lng_error_nocopy_channel(tr::now)
-		: tr::lng_error_nocopy_group(tr::now));
-	return true;
+	return false;
 }
 
 bool ListWidget::hasCopyRestrictionForSelected() const {
