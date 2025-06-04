@@ -718,7 +718,6 @@ Widget::Widget(
 	}
 
 	setupFrozenAccountBar();
-	setupTopBarSuggestions();
 }
 
 void Widget::setupSwipeBack() {
