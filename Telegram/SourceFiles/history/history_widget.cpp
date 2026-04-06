@@ -6238,20 +6238,7 @@ bool HistoryWidget::fieldOrDisabledShown() const {
 }
 
 bool HistoryWidget::hasEnoughLinesForAi() const {
-	if (!_history
-		|| _voiceRecordBar->isActive()
-		|| session().appConfig().aiComposeStyles().empty()) {
-		return false;
-	}
-	const auto &style = _field->st().style;
-	const auto lineHeight = style.lineHeight
-		? style.lineHeight
-		: style.font->height;
-	const auto margins = _field->fullTextMargins();
-	const auto contentHeight = _field->height()
-		- margins.top()
-		- margins.bottom();
-	return contentHeight >= (3 * lineHeight);
+    return false;
 }
 
 void HistoryWidget::updateAiButtonVisibility() {
